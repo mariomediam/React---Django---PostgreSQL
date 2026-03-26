@@ -7,14 +7,16 @@ alwaysApply: true
 
 ## Mensajes de commit
 
+**IMPORTANTE: TODOS los mensajes de commit DEBEN estar en ESPAÑOL**
+
 ### Formato
 ```
-<tipo>: <descripción breve>
+<tipo>: <descripción breve en español>
 
-<descripción detallada opcional>
+<descripción detallada opcional en español>
 ```
 
-### Tipos de commit
+### Tipos de commit (tipo en inglés, descripción en español)
 - `feat`: Nueva funcionalidad
 - `fix`: Corrección de bug
 - `refactor`: Refactorización de código
@@ -26,16 +28,30 @@ alwaysApply: true
 ### Ejemplos
 
 ```bash
-# ✅ BIEN
+# ✅ BIEN - Descripción en español
 git commit -m "feat: agregar formulario de login con Zustand"
 git commit -m "fix: corregir error 404 en endpoint de productos"
 git commit -m "refactor: migrar de Context API a Zustand"
+git commit -m "docs: actualizar README con instrucciones de Docker"
+git commit -m "test: agregar tests para autenticación con JWT"
 
-# ❌ MAL
+# ❌ MAL - Descripción en inglés
+git commit -m "feat: add login form with Zustand"
+git commit -m "fix: correct 404 error in products endpoint"
+git commit -m "refactor: migrate from Context API to Zustand"
+
+# ❌ MAL - Mensajes vagos
 git commit -m "cambios"
 git commit -m "fix"
 git commit -m "update"
 ```
+
+### Reglas de escritura
+1. **Siempre en español** (excepto el tipo: feat, fix, etc.)
+2. **Verbo en infinitivo**: agregar, corregir, actualizar, eliminar
+3. **Descripción clara y concisa**
+4. **Sin punto final**
+5. **Minúsculas** (excepto nombres propios)
 
 ## Archivos a ignorar
 
