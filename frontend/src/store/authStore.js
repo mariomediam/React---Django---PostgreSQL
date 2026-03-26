@@ -35,7 +35,7 @@ const useAuthStore = create(
             isAuthenticated: true,
             loading: false 
           });
-                    
+          
           return { success: true };
         } catch (error) {
           let errorMessage = 'Error al iniciar sesión';
@@ -91,18 +91,22 @@ const useAuthStore = create(
           refreshToken: null, 
           isAuthenticated: false 
         });
-       
       },
 
       checkAuth: async () => {
+        set({ loading: true });
         const token = localStorage.getItem('access_token');
-        if (token) {
+        const refreshToken = localStorage.getItem('refresh_token');
+        
+        if (token && refreshToken) {
           try {
             const userData = await authApi.getCurrentUser();
             set({ 
               user: userData, 
               isAuthenticated: true,
-              accessToken: token 
+              accessToken: token,
+              refreshToken: refreshToken,
+              loading: false
             });
           } catch (error) {
             console.error('Error al verificar autenticación:', error);
@@ -111,9 +115,12 @@ const useAuthStore = create(
               user: null, 
               accessToken: null, 
               refreshToken: null, 
-              isAuthenticated: false 
+              isAuthenticated: false,
+              loading: false
             });
           }
+        } else {
+          set({ loading: false });
         }
       },
 
@@ -123,6 +130,7 @@ const useAuthStore = create(
       name: 'auth-storage',
       partialize: (state) => ({ 
         user: state.user,
+        isAuthenticated: state.isAuthenticated,
       }),
     }
   )
