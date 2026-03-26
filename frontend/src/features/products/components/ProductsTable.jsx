@@ -1,10 +1,8 @@
+import { format } from '@formkit/tempo'
+
 function ProductsTable({ products, loading, onDelete, onEdit }) {
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
+    return format(dateString, 'D MMMM YYYY', 'es')
   }
 
   const formatPrice = (price) => {
