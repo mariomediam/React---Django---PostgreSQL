@@ -48,6 +48,36 @@ const LoginForm = () => {
 export default LoginForm;
 ```
 
+## Validación de Props - NO usar PropTypes
+
+**NO usar PropTypes** - está en desuso y React 19 ha eliminado el soporte nativo:
+
+```javascript
+// ❌ MAL - NO usar PropTypes
+import PropTypes from 'prop-types';
+
+function Button({ label, onClick }) {
+  return <button onClick={onClick}>{label}</button>;
+}
+
+Button.propTypes = {
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+// ✅ BIEN - Sin validación de tipos (para proyectos JavaScript)
+function Button({ label, onClick }) {
+  return <button onClick={onClick}>{label}</button>;
+}
+
+
+```
+
+**Razones:**
+- PropTypes ya no se considera el estándar moderno en React
+- React 19 ha eliminado el soporte nativo, ignorando sus advertencias
+- Para proyectos JavaScript simples, no es necesaria validación explícita
+
 ## Estado - Zustand
 
 **SIEMPRE usar Zustand para estado global, NO Context API**
