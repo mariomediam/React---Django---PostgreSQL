@@ -64,8 +64,18 @@ return Response({"error": "Product not found"}, status=404)
 
 ### Documentación y commits
 - README: **Español**
-- Commits: **Español**
+- **Commits: SIEMPRE en ESPAÑOL** (tipo en inglés, descripción en español)
 - Documentación: **Español**
+
+```bash
+# ✅ BIEN - Commits en español
+git commit -m "feat: agregar autenticación con JWT"
+git commit -m "fix: corregir validación de formulario"
+
+# ❌ MAL - Commits en inglés
+git commit -m "feat: add JWT authentication"
+git commit -m "fix: correct form validation"
+```
 
 ## Convenciones de nombres
 
