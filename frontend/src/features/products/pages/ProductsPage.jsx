@@ -1,13 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuthStore from '@store/authStore'
 import useProductsStore from '@store/productsStore'
 import ProductsTable from '../components/ProductsTable'
+import AddProductModal from '../components/AddProductModal'
+import EditProductModal from '../components/EditProductModal'
 
 function ProductsPage() {
   const { user, logout } = useAuthStore()
   const { products, loading, fetchProducts, deleteProduct } = useProductsStore()
   const navigate = useNavigate()
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [productToEdit, setProductToEdit] = useState(null)
 
   useEffect(() => {
     fetchProducts()
@@ -22,12 +26,20 @@ function ProductsPage() {
     await deleteProduct(id)
   }
 
-  const handleEdit = (id) => {
-    console.log('Editar producto:', id)
+  const handleEdit = (product) => {
+    setProductToEdit(product)
+  }
+
+  const handleCloseEditModal = () => {
+    setProductToEdit(null)
   }
 
   const handleAddProduct = () => {
-    console.log('Añadir producto')
+    setIsAddModalOpen(true)
+  }
+
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false)
   }
 
   return (
@@ -83,6 +95,9 @@ function ProductsPage() {
           </div>
         </div>
       </main>
+
+      <AddProductModal isOpen={isAddModalOpen} onClose={handleCloseAddModal} />
+      <EditProductModal product={productToEdit} onClose={handleCloseEditModal} />
     </div>
   )
 }
